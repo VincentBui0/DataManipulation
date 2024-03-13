@@ -1,3 +1,7 @@
+//////////////////////////
+// Part 0: Initial Code //
+//////////////////////////
+
 // The initial numbers that must be verified.
 const n1 = 10;
 const n2 = 15;
@@ -39,28 +43,39 @@ console.log(isValid);
 // but it SHOULD NOT be done this way. As programmers,
 // we break things into small, manageable pieces so that
 // they can be better understood, scaled, and maintained.
-const dontDoThis = ((n1 + n2 + n3 + n4) == 50) && 
-  ((n1 % 2) + (n2 % 2) + (n3 % 2) + (n4 % 2) >= 2) && 
-  !(n1 > 25 || n2 > 25 || n3 > 25 || n4 > 25) && 
+const dontDoThis = ((n1 + n2 + n3 + n4) == 50) &&
+  ((n1 % 2) + (n2 % 2) + (n3 % 2) + (n4 % 2) >= 2) &&
+  !(n1 > 25 || n2 > 25 || n3 > 25 || n4 > 25) &&
   (n1 != n2 && n1 != n3 && n1 != n4 && n2 != n3 && n2 != n4 && n3 != n4);
 
 
-// Part 1
+///////////////////////////
+// Part 1: Math Problems //
+///////////////////////////
 
-// Check one: all numbers divisible by 5
-const isDivisibleBy5 = n1 % 5 === 0 && n2 % 5 === 0 && n3 % 5 === 0 && n4 % 5 === 0;
+// Check if all numbers are divisible by 5. Cache the result in a variable.
+const isDivisibleBy5 = (n1 % 5) + (n2 % 5) + (n3 % 5) + (n4 % 5) === 0;
+console.log('Are these numbers divisible by 5? ' + isDivisibleBy5)
 
-// Check two: first number larger than last number
-const isFirstLargerThanLast = n1 > n4;
+// Check if the first number is larger than the last. Cache the result in a variable.
+const firstLargerThanLast = n1 > n4;
+console.log('Is the first number larger than the last number? ' + firstLargerThanLast)
 
-// Check three: airthmetic chain
-const arithmeticChainResult = ((n2 - n1) * n3) % n4 === 0;
+/*
+  Accomplish the following arithmetic chain:
+  - Subtract the first number from the second number.
+  - Multiply the result by the third number.
+  - Find the remainder of dividing the result by the fourth number.
+*/
 
-// Combine all checks
-const Valid = isSum50 && isTwoOdd && isOver25 && isUnique && isDivisibleBy5 && isFirstLargerThanLast && arithmeticChainResult;
+let arithmeticChain = n2 - n1;
+arithmeticChain = arithmeticChain * n3;
+arithmeticChain = arithmeticChain % n4;
+console.log(`The result to this arithmetic chain is: ${arithmeticChain}`)
 
-// Print out statements
-console.log(Valid);
+// Change the way that isOver25 calculates so that we do not need to use the NOT operator (!) in other logic comparisons. Rename the variable as appropriate.
+const isNotOver25 = n1 <= 25 && n2 <= 25 && n3 <= 25 && n4 <= 25;
+console.log(`Are all of the numbers not over 25? ${isNotOver25}`)
 
 // Part 2
 // Constants
